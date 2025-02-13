@@ -8,7 +8,7 @@ void main(){
 class Destini extends StatelessWidget{
   Widget build(BuildContext context){
     return MaterialApp(
-      debugShowCheckBanner: false,
+      debugShowCheckedBanner: false,
       theme: ThemeData.dark(),
       home: HomePage(),
     );
