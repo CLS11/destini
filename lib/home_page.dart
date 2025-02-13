@@ -26,32 +26,40 @@ class _HomePageState extends State<HomePage> {
             children: [
               Expanded(
                 flex: 12,
-                child: Center(
-                  child: Text(
-                    storyBrain.getStory(),
-                    ),
-                  ),
+                child: Center(child: Text(storyBrain.getStory())),
               ),
               Expanded(
                 flex: 2,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                  ),
-                  onPressed: () {},
-                  child: Text(
-                    storyBrain.getChoice1(),
+                child: Visibility(
+                  visible: storyBrain.buttonShouldBeVisible(),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        storyBrain.nextStory(1);
+                      });
+                    },
+                    child: Text(storyBrain.getChoice1()),
                   ),
                 ),
               ),
               const SizedBox(height: 20),
               Expanded(
                 flex: 2,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
-                  onPressed: () {},
-                  child: Text(
-                    storyBrain.getChoice2(),
+                child: Visibility(
+                  visible: storyBrain.buttonShouldBeVisible(),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        storyBrain.nextStory(2);
+                      });
+                    },
+                    child: Text(storyBrain.getChoice2()),
                   ),
                 ),
               ),
