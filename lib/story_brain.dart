@@ -54,4 +54,22 @@ class StoryBrain {
   String getChoice2(){
     return _storyData[_storyIndex].choice2;
   }
+  //Updating the next story
+  void nextStory(int choiceNumber){
+     if (_storyIndex == 0 && choiceNumber == 1) {
+      _storyIndex = 2;
+    } else if (_storyIndex == 0 && choiceNumber == 2) {
+      _storyIndex = 1;
+    } else if (_storyIndex == 1 && choiceNumber == 1) {
+      _storyIndex = 2;
+    } else if (_storyIndex == 1 && choiceNumber == 2) {
+      _storyIndex = 3;
+    } else if (_storyIndex == 2 && choiceNumber == 1) {
+      _storyIndex = 5;
+    } else if (_storyIndex == 2 && choiceNumber == 2) {
+      _storyIndex = 4;
+    } else {
+      _storyIndex = 0; 
+    }
+  }
 }
