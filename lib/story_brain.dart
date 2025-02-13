@@ -1,7 +1,8 @@
 import 'story.dart';
 
 class StoryBrain {
-  final int _storyIndex = 0;
+  //The story currently viewed by the user
+  int _storyIndex = 0;
   final List<Story> _storyData = [
     Story(
       storyTitle:
@@ -40,23 +41,29 @@ class StoryBrain {
     ),
   ];
 
+  //Method to get story index
+  int getStoryIndex() {
+    return _storyIndex;
+  }
+
   //Method to get the story title from the list
-  String getStory(){
+  String getStory() {
+    _storyIndex++;
     return _storyData[_storyIndex].storyTitle;
   }
 
   //Method to return choice 1
-  String getChoice1(){
+  String getChoice1() {
     return _storyData[_storyIndex].choice1;
   }
 
   //Method to return choice 2
-  String getChoice2(){
+  String getChoice2() {
     return _storyData[_storyIndex].choice2;
   }
-  //Updating the next story
-  void nextStory(int choiceNumber){
-     if (_storyIndex == 0 && choiceNumber == 1) {
+
+  void nextStory(int choiceNumber) {
+    if (_storyIndex == 0 && choiceNumber == 1) {
       _storyIndex = 2;
     } else if (_storyIndex == 0 && choiceNumber == 2) {
       _storyIndex = 1;
@@ -68,8 +75,20 @@ class StoryBrain {
       _storyIndex = 5;
     } else if (_storyIndex == 2 && choiceNumber == 2) {
       _storyIndex = 4;
+    } else if (_storyIndex == 3 || _storyIndex == 4 || _storyIndex == 5) {
+      restart();
+    }
+  }
+
+  void restart() {
+    _storyIndex = 0;
+  }
+
+  bool buttonShouldBeVisible() {
+    if (getStoryIndex() == 0 || getStoryIndex() == 1 || getStoryIndex() == 2) {
+      return true;
     } else {
-      _storyIndex = 0; 
+      return false;
     }
   }
 }
